@@ -1,0 +1,86 @@
+
+
+
+/* Responsive  */
+
+/* For screen sizes greater than or equal to 500px  */
+@media screen and (min-width: 500px) {
+  html {
+    font-size: 12px;
+  }
+
+ 
+
+  .img-container{
+    min-width: 7rem;
+
+  }
+
+  .main-img {
+    min-width: 25rem;
+  }
+}
+
+/* For screen sizes greater than or equal to 800px, tablets and medium-sized screens */ 
+@media screen and (min-width: 800px) {
+
+
+ 
+
+  .img-container{
+    min-width: 7rem;
+
+  }
+
+  .main-img {
+    min-width: 30rem;
+  }
+}
+
+
+/* For screen sizes greater than or equal to 1200px, larger screens and desktops  */
+@media screen and (min-width: 1200px) {
+
+
+  .slider-container {
+    height: 80%;
+    width: 100%;
+    margin: 2rem;
+    display: flex;
+    flex-flow: row;
+    overflow: hidden;
+  }
+  
+  .slider {
+  
+    flex: auto;
+    height: 600px;
+    width: 30rem;
+    transform: skew(-30deg);
+    overflow: hidden;
+    display: flex;
+    flex-flow: row-reverse;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .img-container {
+ 
+    min-width: 10rem;
+    height: 100%;
+    background-image: url('https://m.media-amazon.com/images/I/51YBVXb-iDL._SX300_SY300_QL70_FMwebp_.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    overflow: hidden;
+  
+  }
+  
+  .main-img {
+    min-width: 50rem;
+  }
+
+  .img-dots{
+    align-self: flex-start;
+  }
+} 
