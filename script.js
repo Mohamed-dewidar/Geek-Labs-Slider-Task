@@ -6,6 +6,7 @@ const data = [
     details: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
     src: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/dbb1e872bf0d75f217734269348b239b8ece37c771e5c072de7a40b81eb103c6._RI_TTW_.jpg"
 },
+
 {
     name: 'Interstellar',
     details: 'When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.',
@@ -29,24 +30,31 @@ let title; // reference to project title
 let details; // reference to project details
 let prevBtn; //  reference to prev button icon
 let nextBtn; //  reference to next button icon
+let imgDots; // reference to image dots indicator
+
+// Script variables
+let imgIndex = 1
 
 
-
+// start script when page loads
 addEventListener('load', scriptBegins)
 
+
+// Script Logic
 function scriptBegins(){
     slider = document.querySelector('[data-slider]')
     title = document.querySelector('[data-title]')
     details = document.querySelector('[data-details]')
     prevBtn = document.querySelector('[data-prevbtn]')
     nextBtn = document.querySelector('[data-nextbtn]')
+    imgDots = document.querySelector('[data-dots]')
 
     loadData()
 
     prevBtn.addEventListener('click', handlePrevClick)
     nextBtn.addEventListener('click', handleNextClick)
 
-    // console.log(slider)
+    
 }
 
 /**
@@ -58,12 +66,18 @@ function scriptBegins(){
 function loadData(){
     
     slider.textContent = ''
+    imgDots.textContent = ''
 
 
     for(const ele of data){
         const imgContainer = document.createElement('div')
         imgContainer.className = 'img-container'
         imgContainer.style.backgroundImage = `url(${ele.src})`
+
+        const dot = document.createElement('div')
+        dot.className = 'dot'
+       
+        imgDots.append(dot)
         slider.append(imgContainer)
     }
 
@@ -78,20 +92,33 @@ function loadData(){
         sliderChildren[0].className = sliderChildren[1].className + ' main-img'
         title.textContent = data[0].name
         details.textContent = data[0].details
+        imgDots.children[imgIndex].classList.add('select')
         return
     }
+    
     sliderChildren[1].className = sliderChildren[1].className + ' main-img'
     title.textContent = data[1].name
     details.textContent = data[1].details
+   
+    imgDots.children[imgIndex].classList.add('select')
 }
 
 
 function handlePrevClick(){
+
+    imgDots.children[imgIndex].classList.remove('select')
+    imgIndex = (imgIndex-1 +data.length) % data.length
+   
+    imgDots.children[imgIndex].classList.add('select')
     data.push(data.shift())
     loadData()
 }
 
 function handleNextClick(){
+    imgDots.children[imgIndex].classList.remove('select')
+    imgIndex = (imgIndex+1) % data.length
+   
+    imgDots.children[imgIndex].classList.add('select')
     data.unshift(data.pop())
     loadData()
 }
